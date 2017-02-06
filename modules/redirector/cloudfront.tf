@@ -4,7 +4,7 @@ resource "aws_cloudfront_origin_access_identity" "oai" {
 
 resource "aws_cloudfront_distribution" "cf" {
   origin {
-    domain_name = "${aws_s3_bucket.b.bucket_domain_name}"
+    domain_name = "${aws_s3_bucket.b.id}.s3.amazonaws.com"
     origin_id   = "${aws_s3_bucket.b.id}-bucket"
 
     s3_origin_config {
@@ -48,7 +48,7 @@ resource "aws_cloudfront_distribution" "cf" {
   }
 
   viewer_certificate {
-    acm_certificate_arn      = "${aws_acm_certificate.c.arn}"
+    acm_certificate_arn      = "${data.aws_acm_certificate.c.arn}"
     minimum_protocol_version = "TLSv1"
     ssl_support_method       = "sni-only"
   }

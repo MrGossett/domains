@@ -34,7 +34,7 @@ resource "aws_s3_bucket" "b" {
   }
 
   website {
-    index_document = "html/index.html"
+    index_document = "index.html"
 
     routing_rules = <<EOF
 [{
